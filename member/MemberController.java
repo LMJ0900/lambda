@@ -54,6 +54,40 @@ public class MemberController {
     public Boolean existById(Scanner sc){
         return memberService.existById(sc.nextLong());
     }
+    public String updatePassword(Scanner sc) {
+        return memberService.updatePassword(Member.builder()
+                .memberName(sc.next())
+                .personId(sc.next())
+                .address(sc.next())
+                .phoneNumber(sc.next())
+                .pw(sc.next())
+                .build()
+        );
+    }
+
+        public String delete(Scanner sc){
+            return memberService.delete(Member.builder()
+                    .memberName(sc.next())
+                    .build()
+            );
+        }
+    public List<?> findMembersByName(Scanner sc){
+        return memberService.findMembersByName(sc.next());
+    }
+    public Map<String, ?> findMembersByFromName(Scanner sc){
+        return memberService.findMembersByFromName(sc.next());
+    }
+    public List<?> findMembersByJob(Scanner sc){
+        return memberService.findMembersByJob(sc.next());
+    }
+    public Map<String, ?> findMembersByFromJob(Scanner sc){
+        return memberService.findMembersByFromJob(sc.next());
+    }
+    public Map<String, ?> findMembersByJobFromMap(Scanner sc){
+        return null;
+    }
+
+
 
 
 

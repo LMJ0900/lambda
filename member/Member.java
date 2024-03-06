@@ -32,8 +32,6 @@ public class Member {
     }
 
     public void setPw(String pw) {
-    this.pw = pw;
+        this.pw = pw;
     }
-
-
 }

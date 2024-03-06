@@ -81,16 +81,9 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
 
 
     @Override
-    public String updatePassword(String id, String updatePw) {
-        String msg = "";
-        Member memberDto = members.get(id);
-        if (memberDto==null){
-            msg = "아이디가 틀렸습니다.";
-        }else {
-            memberDto.setPw(updatePw);
-            msg = "비밀번호 변경 완료";
-        }
-        return msg;
+    public String updatePassword(Member member) {
+        members.get(member.getMemberName()).setPw(member.getPw());
+        return "비밀번호 변경 완료";
 
     }
 

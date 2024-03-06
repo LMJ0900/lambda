@@ -7,7 +7,7 @@ public interface MemberService {
     String login(Member member);
 
 
-    String updatePassword(String memberName, String updatePw);
+    String updatePassword(Member member);
 
 
     Map<String, ?> getMemberMap();
