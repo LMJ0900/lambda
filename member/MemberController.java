@@ -2,6 +2,7 @@ package member;
 
 import enums.Messenger;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,12 +10,15 @@ import java.util.Optional;
 
 
 public class MemberController {
+
+    Map<String, Member> members;
     MemberServiceImpl memberService;
+    MemberRepository repository;
 
 
     public MemberController() {
         this.memberService = MemberServiceImpl.getInstance();
-
+        this.repository = MemberRepository.getInstance();
     }
     public String login(Scanner scanner) {
         return memberService.login(Member.builder()
@@ -88,12 +92,11 @@ public class MemberController {
     }
 
 
+    public String test(Scanner sc) {
+        return memberService.test();
+    }
 
-
-
-
-
-
-
-
+    public List<?> findMembers() throws SQLException {
+        return memberService.findMembers();
+    }
 }

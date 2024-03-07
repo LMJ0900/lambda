@@ -1,10 +1,12 @@
 package member;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class MemberView {
-    public static void main( Scanner sc ) {
+    public static void main( Scanner sc ) throws SQLException {
         MemberController controller = new MemberController();
         String msg = controller.addMembers();
         System.out.println(" addMembers 결과 : ");
@@ -34,6 +36,7 @@ public class MemberView {
                     break;
                 case "3":
 
+
                     break;
                 case "4":
                     System.out.println("4-비번변경");
@@ -44,7 +47,8 @@ public class MemberView {
                     break;
                 case "6":
                     System.out.println("6-회원목록");
-
+                    List<?> members = controller.findMembers();
+                    members.forEach(i -> System.out.println(i));
                     break;
                 case "7":
                     System.out.println("7-이름검색");

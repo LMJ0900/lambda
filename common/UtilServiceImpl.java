@@ -1,6 +1,6 @@
 package common;
 
-public class UtilServiceImpl implements UtilService {
+public class UtilServiceImpl implements UtilService  {
 
     private static UtilService instance = new UtilServiceImpl();
     private UtilServiceImpl(){}

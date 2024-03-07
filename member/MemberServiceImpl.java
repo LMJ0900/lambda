@@ -5,23 +5,26 @@ import common.UtilService;
 import common.UtilServiceImpl;
 import enums.Messenger;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MemberServiceImpl extends AbstractService<Member> implements MemberService {
-    private static MemberServiceImpl instance = new MemberServiceImpl();
-
+    MemberRepository repository;
     Map<String, Member> members;
-
-
+    private static MemberServiceImpl instance = new MemberServiceImpl();
 
     private MemberServiceImpl() {
         this.members = new HashMap<>();
+        this.repository = MemberRepository.getInstance();
     }
-
     public static MemberServiceImpl getInstance() {
         return instance;
     }
+
+
+
+
 
 
     @Override
@@ -79,6 +82,11 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
         return msg;
     }
 
+    @Override
+    public String test() {
+        return null;
+    }
+
 
     @Override
     public String updatePassword(Member member) {
@@ -101,6 +109,8 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
         });*/
         return members;
     }
+
+
 
     @Override
     public List<?> findMembersByName(String name) {
@@ -162,5 +172,10 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
     @Override
     public Map<String, ?> findMembersByJobFromMap(String job) {
         return null;
+    }
+
+    @Override
+    public List<?> findMembers() throws SQLException {
+        return repository.findMembers();
     }
 }

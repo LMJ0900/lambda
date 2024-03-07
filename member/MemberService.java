@@ -1,12 +1,12 @@
 package member;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
     String login(Member member);
-
-
+    String test();
     String updatePassword(Member member);
 
 
@@ -21,4 +21,6 @@ public interface MemberService {
     String addMembers();
 
     Map<String,?> findMembersByJobFromMap(String job);
+
+    List<?> findMembers() throws SQLException;
 }
