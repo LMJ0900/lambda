@@ -22,7 +22,9 @@ public class MemberView {
                     "6-회원목록\n " +
                     "7-이름검색\n" +
                     "8-직업검색\n" +
-                    "9-회원수");
+                    "9-회원수\n"  +
+                     "touch- 테이블생성\n" +
+                    "rm-테이블 삭제 ");
             switch (sc.next()){
                 case "0":
                     System.out.println("종료");return;
@@ -58,6 +60,14 @@ public class MemberView {
                     break;
                 case "9":
                     System.out.println("9-회원수");
+                    break;
+                case "touch":
+                    System.out.println("테이블생성");
+                    System.out.println(controller.createTable());
+                    break;
+                case "rm":
+                    System.out.println("테이블 삭제");
+                    System.out.println(controller.deleteTable());
                     break;
 
             }

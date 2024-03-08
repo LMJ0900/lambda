@@ -23,4 +23,8 @@ public interface MemberService {
     Map<String,?> findMembersByJobFromMap(String job);
 
     List<?> findMembers() throws SQLException;
+
+    String createTable() throws SQLException;
+
+    String deleteTable() throws SQLException;
 }

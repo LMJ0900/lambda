@@ -28,9 +28,9 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
 
 
     @Override
-    public Messenger save(Member member) {
+    public Messenger save(Member member) throws SQLException {
         members.put(member.getMemberName(), member);
-        return Messenger.SUCCESS;
+        return repository.saveMembers(member);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
         Member memberDto = members.get(member.getMemberName());
         if (memberDto==null){
             msg = "아이디가 틀렸습니다.";
-        }else if (memberDto.getPw().equals(member.getPw())){
+        }else if (memberDto.getPassword().equals(member.getPassword())){
             msg = "로그인 성공";
         }else {
             msg = "비밀번호가 틀렸습니다.";
@@ -90,7 +90,7 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
 
     @Override
     public String updatePassword(Member member) {
-        members.get(member.getMemberName()).setPw(member.getPw());
+        members.get(member.getMemberName()).setPw(member.getPassword());
         return "비밀번호 변경 완료";
 
     }
@@ -159,7 +159,7 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
             map.put(memberName,
                     Member.builder()
                             .memberName(memberName)
-                            .pw("1")
+                            .password("1")
                             .name(UtilServiceImpl.getInstance().createRandomName())
                             .job(UtilServiceImpl.getInstance().createRandomName())
                             .build());
@@ -177,5 +177,15 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
     @Override
     public List<?> findMembers() throws SQLException {
         return repository.findMembers();
+    }
+
+    @Override
+    public String createTable() throws SQLException {
+        return repository.createTable();
+    }
+
+    @Override
+    public String deleteTable() throws SQLException {
+        return repository.deleteTable();
     }
 }

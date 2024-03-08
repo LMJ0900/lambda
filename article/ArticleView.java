@@ -18,8 +18,7 @@ public class ArticleView {
                 case "1" :
                     System.out.println("글 목록 : ");
 
-                    List<?> list = controller.articlesList(sc);
-                    list.forEach(i -> System.out.println(i));
+                    controller.articlesList(sc).forEach(i -> System.out.println(i));
 
                     break;
             }

@@ -1,4 +1,3 @@
-/*
 package proxy;
 
 import java.util.function.BiFunction;
@@ -7,9 +6,9 @@ import java.util.function.Supplier;
 
 public class MathProxy {
     public static Function<Integer,Integer> absInt = Math::abs;
-    public static Function<Double, Integer> ceilInt = Math::ceil;
+    /*public static Function<Double, Integer> ceilInt = Math::ceil;
     public static Function<Double, Integer> roundInt = Math::round;
-    public static Function<Double, Integer> floorInt = Math::floor;
+    public static Function<Double, Integer> floorInt = Math::floor;*/
     public static BiFunction<Integer,Integer,Integer> maxInt = Math::max;
     public static BiFunction<Integer,Integer,Integer> minInt = Math::min;
     public static Function<String, Integer> parseInt = Integer::parseInt;
@@ -17,9 +16,9 @@ public class MathProxy {
 
 
     public static Function<Double,Double> absDouble = Math::abs;
-    public static Function<Double, Integer> ceilDouble = Math::ceil;
+    /*public static Function<Double, Integer> ceilDouble = Math::ceil;
     public static Function<Double, Integer> roundDouble = Math::round;
-    public static Function<Double, Integer> floorDouble = Math::floor;
+    public static Function<Double, Integer> floorDouble = Math::floor;*/
     public static BiFunction<Double,Double,Double> maxDouble = Math::max;
     public static BiFunction<Double,Double,Double> minDouble = Math::min;
 
@@ -29,4 +28,3 @@ public class MathProxy {
 
     //Integer.parseInt
 }
-*/

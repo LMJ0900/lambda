@@ -17,16 +17,16 @@ public class Main {
 
         while (true) {
             System.out.println(
-                    "0-종료 1-회원관리 2-Article 3-게시판 4-Crawler 5-사용자관리(맵) 6-은행계좌");
+                    "x-exit m-Member a-Article b-Board ac-Account c-Crawler l-ls");
             switch (sc.next()) {
-                case "0":
+                case "x":
                     System.out.println("종료");
                     return ;
-                case "1": MemberView.main(sc); break;
-                case "2":
+                case "m": MemberView.main(sc); break;
+                case "a":
                     ArticleView.main(sc); break;
-                case "3": BoardView.main(); break;
-                case "4":
+                case "b": BoardView.main(); break;
+                case "c":
                     CrawlerView.main(sc); break;
                 case "5":
                 case "6": AccountView.main(sc); break;

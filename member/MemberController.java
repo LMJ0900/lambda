@@ -23,20 +23,22 @@ public class MemberController {
     public String login(Scanner scanner) {
         return memberService.login(Member.builder()
                 .memberName(scanner.next())
-                .pw(scanner.next())
+                .password(scanner.next())
                 .build());
 
     }
     public String addMembers() {
         return memberService.addMembers();
     }
-    public Messenger save(Scanner sc) {
+    public Messenger save(Scanner sc) throws SQLException {
         memberService.save(Member.builder()
                 .memberName(sc.next())
-                .personId(sc.next())
-                .address(sc.next())
+                .password(sc.next())
+                .name(sc.next())
                 .phoneNumber(sc.next())
-                .pw(sc.next())
+                .job(sc.next())
+                .height(sc.next())
+                .weight(sc.next())
                 .build());
         return Messenger.SUCCESS;
     }
@@ -61,10 +63,9 @@ public class MemberController {
     public String updatePassword(Scanner sc) {
         return memberService.updatePassword(Member.builder()
                 .memberName(sc.next())
-                .personId(sc.next())
                 .address(sc.next())
                 .phoneNumber(sc.next())
-                .pw(sc.next())
+                .password(sc.next())
                 .build()
         );
     }
@@ -98,5 +99,13 @@ public class MemberController {
 
     public List<?> findMembers() throws SQLException {
         return memberService.findMembers();
+    }
+
+    public String createTable() throws SQLException {
+        return memberService.createTable();
+    }
+
+    public String deleteTable() throws SQLException {
+        return memberService.deleteTable();
     }
 }
