@@ -179,7 +179,7 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
     }
 
     @Override
-    public String createTable() throws SQLException {
+    public Messenger createTable() throws SQLException {
         return repository.createTable();
     }
 

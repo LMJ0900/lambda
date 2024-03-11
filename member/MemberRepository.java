@@ -66,7 +66,7 @@ public class MemberRepository {
         return ls;
     }
 
-    public String createTable() throws SQLException {
+    public Messenger createTable() throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS members (\n" +
                 "                       id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                 "                       member_name VARCHAR(20) NOT NULL,\n" +
@@ -82,7 +82,7 @@ public class MemberRepository {
         System.out.println("쿼리의 반환값은 :" + ex);// CREATE / DROP 관련 구문에서는 0 을 반환합니다.
 
 
-        return (ex == 0) ? "회원테이블 생성성공" : "회원테이블 생성실패" ;
+        return (ex == 0) ? Messenger.SUCCESS : Messenger.FAIL ;
     }
 
     public String deleteTable() throws SQLException {
