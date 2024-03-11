@@ -79,15 +79,10 @@ public class MemberRepository {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         int ex = pstmt.executeUpdate();
         System.out.println("쿼리의 반환값은 :" + ex);// CREATE / DROP 관련 구문에서는 0 을 반환합니다.
-        String msg = "";
-        if (ex == 0) {
-            msg = "회원테이블 생성성공";
-        } else {
-            msg = "회원테이블 생성실패";
-        }
+       pstmt.close();
+       conn.close();
 
-
-        return msg;
+        return (ex == 0) ? "회원테이블 생성성공" : "회원테이블 생성실패" ;
     }
 
     public String deleteTable() throws SQLException {

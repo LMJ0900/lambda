@@ -101,7 +101,7 @@ public class MemberController {
         return memberService.findMembers();
     }
 
-    public String createTable() throws SQLException {
+    public Messenger createTable() throws SQLException {
         return memberService.createTable();
     }
 
