@@ -1,16 +1,16 @@
-package member;
+package com.turing.api.member;
 
-import enums.Messenger;
+import com.turing.api.enums.Messenger;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MemberRepository {
     Connection conn;
     private static MemberRepository instance;
+    private PreparedStatement pstmt;
+    private ResultSet rs;
 
     static {
         try {
@@ -25,6 +25,7 @@ public class MemberRepository {
                 "jdbc:mysql://localhost:3306/turingdb",
                 "turing",
                 "password");
+        pstmt = null;
 
     }
 
@@ -39,8 +40,8 @@ public class MemberRepository {
     public List<?> findMembers() throws SQLException {
         List<Member> ls = new ArrayList<>();
         String sql = "select * from members";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        ResultSet rs = pstmt.executeQuery();
+        pstmt = conn.prepareStatement(sql);
+        rs = pstmt.executeQuery();
         if (rs.next()) {
             do {
                 ls.add(Member.builder()
@@ -76,11 +77,10 @@ public class MemberRepository {
                 "                       height VARCHAR(20),\n" +
                 "                       weight VARCHAR(20)\n" +
                 ")";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt = conn.prepareStatement(sql);
         int ex = pstmt.executeUpdate();
         System.out.println("쿼리의 반환값은 :" + ex);// CREATE / DROP 관련 구문에서는 0 을 반환합니다.
-       pstmt.close();
-       conn.close();
+
 
         return (ex == 0) ? "회원테이블 생성성공" : "회원테이블 생성실패" ;
     }
@@ -105,7 +105,7 @@ public class MemberRepository {
         String sql = "insert into Members(member_name, password, name" +
                 ", phone_number, job, height,weight)" +
                 "values (?,?,?,?,?,?,?)";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt = conn.prepareStatement(sql);
 
         pstmt.setString(1, member.getMemberName());
         pstmt.setString(2, member.getPassword());
@@ -116,7 +116,6 @@ public class MemberRepository {
         pstmt.setString(7, member.getWeight());
 
         pstmt.executeUpdate();
-        pstmt.close();
         return Messenger.SUCCESS;
     }
 }

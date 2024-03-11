@@ -1,9 +1,8 @@
-package member;
+package com.turing.api.member;
 
-import common.AbstractService;
-import common.UtilService;
-import common.UtilServiceImpl;
-import enums.Messenger;
+import com.turing.api.common.AbstractService;
+import com.turing.api.common.UtilServiceImpl;
+import com.turing.api.enums.Messenger;
 
 import java.sql.SQLException;
 import java.util.*;

@@ -1,8 +1,7 @@
-package member;
+package com.turing.api.member;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class MemberView {

@@ -1,15 +1,6 @@
-package crawler;
-
-import member.Member;
-import member.MemberServiceImpl;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+package com.turing.api.crawler;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 public class CrawlerServiceImpl implements CrawlerService {

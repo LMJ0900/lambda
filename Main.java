@@ -1,8 +1,10 @@
-import account.AccountView;
-import article.ArticleView;
-import board.BoardView;
-import crawler.CrawlerView;
-import member.MemberView;
+package com.turing.api;
+
+import com.turing.api.account.AccountView;
+import com.turing.api.article.ArticleView;
+import com.turing.api.board.BoardView;
+import com.turing.api.crawler.CrawlerView;
+import com.turing.api.member.MemberView;
 
 import java.io.IOException;
 import java.sql.SQLException;
