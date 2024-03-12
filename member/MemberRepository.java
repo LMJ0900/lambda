@@ -90,15 +90,7 @@ public class MemberRepository {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         int de = pstmt.executeUpdate();
         System.out.println("쿼리의 반환값은 :" + de);
-        String msg = "";
-        if (de == 0) {
-
-            msg = "테이블 삭제 성공";
-        } else {
-            msg = "테이블 삭제 실패";
-        }
-
-        return msg;
+        return (de==0) ? "테이블 생성 성공" : "테이블 생성 실패";
     }
 
     public Messenger saveMembers(Member member) throws SQLException {
@@ -115,7 +107,8 @@ public class MemberRepository {
         pstmt.setString(6, member.getHeight());
         pstmt.setString(7, member.getWeight());
 
-        pstmt.executeUpdate();
-        return Messenger.SUCCESS;
+        int res = pstmt.executeUpdate();
+
+        return (res == 1) ? Messenger.SUCCESS : Messenger.FAIL;
     }
 }
