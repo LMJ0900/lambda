@@ -1,7 +1,6 @@
-package crawler;
+package com.turing.api.crawler;
 
-import common.AbstractRepository;
-import member.MemberServiceImpl;
+import com.turing.api.common.AbstractRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

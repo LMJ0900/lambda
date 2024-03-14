@@ -1,4 +1,4 @@
-package member;
+package com.turing.api.member;
 
 import lombok.*;
 
@@ -9,21 +9,20 @@ import lombok.*;
 public class Member {
     private Long id;
     private String memberName;
-    private String pw;
+    private String password;
     private String name;
-    private String personId;
     private String phoneNumber;
     private String address;
     private String job;
-    private double height;
-    private double weight;
+    private String height;
+    private String weight;
 
 @Builder(builderMethodName = "builder")
-    public Member(String memberName, String pw, String name, String personId, String phoneNumber, String address, String job, double height, double weight) {
+    public Member(Long id,String memberName, String password, String name, String phoneNumber, String address, String job, String height, String weight) {
+        this.id = id;
         this.memberName = memberName;
-        this.pw = pw;
+        this.password = password;
         this.name = name;
-        this.personId = personId;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.job = job;
@@ -32,6 +31,6 @@ public class Member {
     }
 
     public void setPw(String pw) {
-        this.pw = pw;
+        this.password = pw;
     }
 }

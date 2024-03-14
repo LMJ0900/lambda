@@ -1,6 +1,4 @@
-package account;
-
-import java.util.List;
+package com.turing.api.account;
 
 public interface AccountService {
 

@@ -1,7 +1,8 @@
-package member;
+package com.turing.api.member;
 
-import enums.Messenger;
+import com.turing.api.enums.Messenger;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,30 +10,35 @@ import java.util.Optional;
 
 
 public class MemberController {
+
+    Map<String, Member> members;
     MemberServiceImpl memberService;
+    MemberRepository repository;
 
 
     public MemberController() {
         this.memberService = MemberServiceImpl.getInstance();
-
+        this.repository = MemberRepository.getInstance();
     }
     public String login(Scanner scanner) {
         return memberService.login(Member.builder()
                 .memberName(scanner.next())
-                .pw(scanner.next())
+                .password(scanner.next())
                 .build());
 
     }
     public String addMembers() {
         return memberService.addMembers();
     }
-    public Messenger save(Scanner sc) {
+    public Messenger save(Scanner sc) throws SQLException {
         memberService.save(Member.builder()
                 .memberName(sc.next())
-                .personId(sc.next())
-                .address(sc.next())
+                .password(sc.next())
+                .name(sc.next())
                 .phoneNumber(sc.next())
-                .pw(sc.next())
+                .job(sc.next())
+                .height(sc.next())
+                .weight(sc.next())
                 .build());
         return Messenger.SUCCESS;
     }
@@ -57,10 +63,9 @@ public class MemberController {
     public String updatePassword(Scanner sc) {
         return memberService.updatePassword(Member.builder()
                 .memberName(sc.next())
-                .personId(sc.next())
                 .address(sc.next())
                 .phoneNumber(sc.next())
-                .pw(sc.next())
+                .password(sc.next())
                 .build()
         );
     }
@@ -88,12 +93,19 @@ public class MemberController {
     }
 
 
+    public String test(Scanner sc) {
+        return memberService.test();
+    }
 
+    public List<?> findMembers() throws SQLException {
+        return memberService.findMembers();
+    }
 
+    public Messenger createTable() throws SQLException {
+        return memberService.createTable();
+    }
 
-
-
-
-
-
+    public String deleteTable() throws SQLException {
+        return memberService.deleteTable();
+    }
 }

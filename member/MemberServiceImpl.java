@@ -1,33 +1,35 @@
-package member;
+package com.turing.api.member;
 
-import common.AbstractService;
-import common.UtilService;
-import common.UtilServiceImpl;
-import enums.Messenger;
+import com.turing.api.common.AbstractService;
+import com.turing.api.common.UtilServiceImpl;
+import com.turing.api.enums.Messenger;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class MemberServiceImpl extends AbstractService<Member> implements MemberService {
-    private static MemberServiceImpl instance = new MemberServiceImpl();
-
+    MemberRepository repository;
     Map<String, Member> members;
-
-
+    private static MemberServiceImpl instance = new MemberServiceImpl();
 
     private MemberServiceImpl() {
         this.members = new HashMap<>();
+        this.repository = MemberRepository.getInstance();
     }
-
     public static MemberServiceImpl getInstance() {
         return instance;
     }
 
 
+
+
+
+
     @Override
-    public Messenger save(Member member) {
+    public Messenger save(Member member) throws SQLException {
         members.put(member.getMemberName(), member);
-        return Messenger.SUCCESS;
+        return repository.saveMembers(member);
     }
 
     @Override
@@ -71,7 +73,7 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
         Member memberDto = members.get(member.getMemberName());
         if (memberDto==null){
             msg = "아이디가 틀렸습니다.";
-        }else if (memberDto.getPw().equals(member.getPw())){
+        }else if (memberDto.getPassword().equals(member.getPassword())){
             msg = "로그인 성공";
         }else {
             msg = "비밀번호가 틀렸습니다.";
@@ -79,10 +81,15 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
         return msg;
     }
 
+    @Override
+    public String test() {
+        return null;
+    }
+
 
     @Override
     public String updatePassword(Member member) {
-        members.get(member.getMemberName()).setPw(member.getPw());
+        members.get(member.getMemberName()).setPw(member.getPassword());
         return "비밀번호 변경 완료";
 
     }
@@ -101,6 +108,8 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
         });*/
         return members;
     }
+
+
 
     @Override
     public List<?> findMembersByName(String name) {
@@ -149,7 +158,7 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
             map.put(memberName,
                     Member.builder()
                             .memberName(memberName)
-                            .pw("1")
+                            .password("1")
                             .name(UtilServiceImpl.getInstance().createRandomName())
                             .job(UtilServiceImpl.getInstance().createRandomName())
                             .build());
@@ -162,5 +171,20 @@ public class MemberServiceImpl extends AbstractService<Member> implements Member
     @Override
     public Map<String, ?> findMembersByJobFromMap(String job) {
         return null;
+    }
+
+    @Override
+    public List<?> findMembers() throws SQLException {
+        return repository.findMembers();
+    }
+
+    @Override
+    public Messenger createTable() throws SQLException {
+        return repository.createTable();
+    }
+
+    @Override
+    public String deleteTable() throws SQLException {
+        return repository.deleteTable();
     }
 }
